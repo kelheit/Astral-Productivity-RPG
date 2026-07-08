@@ -10,6 +10,8 @@ Miss your habits? Your HP drops. Hit zero? You die, lose your streak, and reset 
 
 ---
 
+Want to see the website? Open https://kelheit.github.io/PixelQuest-Habit-RPG/
+
 ## Core Mechanics
 
 ### 1. Survival HP System
