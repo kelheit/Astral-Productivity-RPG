@@ -1,120 +1,118 @@
-# ASTRAL // Survival Productivity RPG
+# PixelQuest — Habit RPG
 
 > **"Discipline is survival. Comfort is the void."**
 
-Astral is not your average cute habit tracker. It is a brutal, high-stakes productivity RPG designed for hardcore consistency. Built with a dark industrial macOS-terminal aesthetic, Astral gamifies your daily routine by putting your virtual life on the line.
+PixelQuest is a brutal, high-stakes productivity RPG designed for hardcore consistency. Built with a dark industrial macOS-terminal aesthetic, it gamifies your daily routine by putting your virtual life on the line.
 
-Miss your habits? Your HP drops. Hit zero? You die, lose your streak, and reset your level XP. But if you endure, you ascend to godhood, unlocking cosmic rebirths and expanding your personal galaxy.
+Miss your habits? Your HP drops. Hit zero? You die, lose your streak, and reset unallocated Pending Points. But if you endure, you ascend — unlocking stat rebirths and class-based progression.
 
-![Tech Stack](https://img.shields.io/badge/Stack-React_Vite_+_TailwindCSS-27C93F?style=for-the-badge)![Status](https://img.shields.io/badge/Status-UI/UX_Mockup-FFBD2E?style=for-the-badge)
-[[README]]
----[[README]]
+![Tech Stack](https://img.shields.io/badge/Stack-React_19_Vite_8_Tailwind_4-27C93F?style=for-the-badge)![Status](https://img.shields.io/badge/Status-Frontend_Mockup-FFBD2E?style=for-the-badge)
 
-## 🌌 Core Mechanics
+---
 
-### 1. The Survival HP System
+## Core Mechanics
 
-- **Dynamic Max HP:** Scales from 100 (Level 1) up to 10,000 (Level 100).
-- **Real-time Penalties:** Tapping `-` on a bad habit instantly drops your HP based on difficulty. There is no "undo" without a 3-second safeguard.
-- **Dusk Evaluation:** When the day ends, any unchecked positive habits automatically deal HP damage. Todos that are overdue drain 1% Max HP per day.
-- **Death State:** If HP hits 0, you collapse. You lose your current level XP, your streak breaks, and all unallocated Pending Points vanish. You respawn with 1 HP.
+### 1. Survival HP System
+- **Dynamic Max HP:** Scales from 100 (Level 0) up to 10,000 (Level 100).
+- **Real-time Penalties:** Tapping `-` on a bad habit instantly drops HP based on difficulty. A 3-second undo window is available.
+- **Dusk Evaluation:** When triggered manually, any unchecked positive habits deal HP damage (capped at 30% max HP). Perfect days grant HP regen (20% max HP). Overdue todos drain 1% max HP per day (compound, capped at 50%).
+- **Death State:** If HP hits 0, you lose current streak and all unallocated Pending Points vanish. You respawn with 1 HP.
 
 ### 2. Habitica-Style Continuous Tapping (+/-)
+- Habits can be tapped `+` multiple times per day (e.g., "Drink Water" 8 times).
+- Tapping `+` grants XP and Pending Points. Tapping `-` drops HP with a 3-second undo countdown.
+- **macOS Traffic Light UI:** `+` (Green) on the far right, `-` (Red) on the far left. Card backgrounds shift color based on net day score.
 
-- Habits aren't just one-time checkboxes. You can tap `+` multiple times (e.g., "Drink Water" 8 times).
-- Tapping `+` grants XP and Pending Points. Tapping `-` drops HP.
-- **macOS Traffic Light UI:** The `+` (Green) is on the far right, `-` (Red) is on the far left to eliminate accidental taps. Card backgrounds shift color (Green/Yellow/Red) based on the net score.
-
-### 3. Pending Points & Stat Allocation (1.5 Year Cap)
-
-- Completing tasks grants **Pending Points** specific to a stat (STR, INT, DEX, CON). Max 100 pending points per stat.
-- Points must be manually allocated in the Stats tab.
-- **Math Cap:** Stats cap at 10,000. With daily averages (~20 points/day), reaching the cap takes approximately 1.5 years of consistency.
+### 3. Pending Points & Stat Allocation
+- Completing tasks grants **Pending Points** specific to a stat (STR, INT, DEX, CON). Max 100 pending per stat.
+- Points must be manually **Allocated** in the Stats tab. Stat cap: 10,000 per stat (~1.5 years of daily play).
+- Reverting a task completion reverses XP and stat gains (deducts from pending first, then from allocated points).
 
 ### 4. Rebirth (Prestige System)
-
 - When a stat hits 10,000, the **Rebirth** button unlocks.
-- Rebirth resets that stat to 0, but grants a one-time bounty of 1,000 Gold and 10 Gems.
+- Rebirth resets that stat to 0, but grants **500 Gold + 5 Gems**.
 
 ### 5. Commit System (High Risk / High Reward)
+- On Dailies, you can "Mark" (⭐) a task for **1.25x XP** on success / **2x HP damage** on failure at Dusk.
 
-- On Dailies, you can "Commit" (⭐) to a task.
-- Success yields **1.5x XP**.
-- Failure at Dusk deals **2x HP Damage**.
+### 6. 4 RPG Classes
+| Class | Affinity | Perk |
+|---|---|---|
+| Warrior | STR | +50% pending STR gain |
+| Mage | INT | +50% pending INT gain |
+| Rogue | DEX | +50% pending DEX gain |
+| Healer | CON | +50% pending CON gain |
 
-### 6. Cosmic Ecosystem
+Swappable at any time in the Stats panel. Class determines weapon sprite overlay.
 
-- Your HP dictates your visual ecosystem state:
-    - **> 60% HP:** Thriving (Blue/Green Galaxy)
-    - **25% - 60% HP:** Warning (Red Giant)
-    - **< 25% HP:** Dying (Black Hole)
-- Gold and Gems earned from tasks can only be spent in the Ecosystem tab to purchase visual assets (Planets, Stars).
+### 7. Currencies
+- **Gold** — earned from completing tasks, spent in the Reward shop.
+- **Gems** — premium currency (earned from Rebirth), spent on gem-cost rewards.
+
+### 8. Pixel-Art Character
+- SVG-rendered character sprite based on your class.
+- **Weapon** and **Pet** can be equipped/unequipped in the Stats panel.
+
+### 9. Dark / Light Theme
+- Toggle in the header. Persisted in `localStorage`.
+- Dark: industrial terminal aesthetic. Light: warm paper tones.
 
 ---
 
-## 💻 Tech Stack
+## Tech Stack
 
-- **Framework:** React (Vite)
-- **Styling:** Tailwind CSS (Inline styles used for specific hex-matched macOS industrial palette)
+- **Framework:** React 19 (Vite 8)
+- **Styling:** Tailwind CSS 4 (via `@tailwindcss/vite`) — all components use inline styles targeting a custom dark/light color palette
 - **Icons:** Lucide-React
-- **State Management:** React `useState` (Mockup phase)
+- **State Management:** React `useState` + custom `useLocalStorage` hook (persisted to `localStorage`)
+- **Testing:** Vitest 4 (unit tests in `src/utils/math.test.js`)
+- **Linting:** oxlint 1.71
+- **Fonts:** Press Start 2P (display), Inter (body), JetBrains Mono (mono)
+- **Design:** Dark Industrial Terminal / macOS Window — `#0a0a0a` background, `#181411` surface
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
-This is a UI/UX mockup. All state is temporary and resets on refresh. To run locally:
+This is a frontend mockup. All state is persisted to `localStorage` but has no backend.
 
-1. **Clone the repository**
-    
-    ```bash 
-    git clone https://github.com/your-username/astral-mock.gitcd astral-mock 
-    ```
-    
+```bash
+git clone https://github.com/your-username/pixelquest.git
+cd pixelquest
+npm install
+npm run dev
+```
 
-2. **Install dependencies**
-    
-    ```bash
-    npm install
-    ```
-    
-3. **Run the development server**
-    
-    ```bash
-    npm run dev
-    ```
-    
-4. Open `http://localhost:5173` in your browser.
-    
+Open `http://localhost:5173` in your browser.
 
 ---
 
-## 🎨 Design Language
+## Scripts
 
-- **Theme:** Dark Industrial Terminal / macOS Window
-- **Background:** `#0a0a0a`
-- **Surface:** `#181411`, `#1e1e1e`
-- **Accents:**
-    - Primary (Orange): `#f97815`
-    - Blue (Quests/Currency): `#3080ff`
-    - Success (Green): `#27C93F`
-    - Warning (Yellow): `#FFBD2E`
-    - Danger (Red): `#FF5F56`
-
----
-
-## 🗺️ Roadmap
-
-- [x]  UI/UX Mockup & Layout
-- [x]  Core Logic (HP, XP, Pending Points, Dusk)
-- [x]  Rebirth System UI
-- [ ]  Backend Integration (Supabase / Next.js API)
-- [ ]  Server-side Cron Jobs for Midnight Dusk Evaluations
-- [ ]  Timezone validation for users
-- [ ]  Mobile App Wrapper (Capacitor / React Native)
+| Command | Description |
+|---|---|
+| `npm run dev` | Start dev server |
+| `npm run build` | Production build to `dist/` |
+| `npm run preview` | Preview production build |
+| `npm test` | Run vitest unit tests |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run lint` | Run oxlint |
 
 ---
 
-## ⚠️ Disclaimer
+## Roadmap
 
-This project is currently a **frontend mockup** meant for visualizing game loops and UI aesthetics. No real backend or persistent database is attached yet.
+- [x] UI/UX Mockup & Layout
+- [x] Core Logic (HP, XP, Pending Points, Dusk, Classes)
+- [x] Rebirth System
+- [x] localStorage Persistence
+- [ ] Backend Integration (Supabase / Next.js API)
+- [ ] Server-side Cron Jobs for Midnight Dusk Evaluations
+- [ ] Timezone Validation
+- [ ] Mobile App Wrapper (Capacitor / React Native)
+
+---
+
+## Disclaimer
+
+This project is currently a **frontend mockup** meant for visualizing game loops and UI. No real backend or persistent database is attached yet. State survives refresh via `localStorage` only.
